@@ -18,11 +18,15 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
-    # ...
+    if base == 2:
+        print("base 2")
+        for i in len(digits)
     # TODO: Decode digits from hexadecimal (base 16)
-    # ...
+    elif base == 16:
+        print("Base 16")
     # TODO: Decode digits from any base (2 up to 36)
-    # ...
+    else:
+        print("Other base")
 
 
 def encode(number, base):
@@ -35,7 +39,17 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
-    # ...
+    converting = True
+
+    if base == 2:
+        base_two_number = ''
+        while(converting):
+            base_two_number += String(number % 2)
+            number = number / 2
+            if number <= 1:
+                converting = False
+
+        return base_two_number
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)

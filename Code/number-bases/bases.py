@@ -20,32 +20,14 @@ def decode(digits, base):
 
     digits = digits[::-1]
     base_ten_conversion = 0
-    strings = string.digits + string.ascii_uppercase
+    char_dict = {'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'a':10,'b':11,'c':12,'d':13,'e':14,'f':15,'g':16,'h':17,'i':18,'j':19,'k':20,'l':21,'m':22,'n':23,'o':24,'p':25,'q':26,'r':27,'s':28,'t':29,'u':30,'v':31,'w':32,'x':33,'y':34,'z':35}
+    base_mult = 1
 
     for i, num in enumerate(digits):
-        print(f"i: {i}, num: {num}")
-        print(base**i)
-        print(strings.index(num))
-        base_ten_conversion += (base**i) * strings.index(num)
-        # base_ten_conversion += num * (base**i)
-
-    # TODO: Decode digits from binary (base 2)
-    # if base == 2:
-    #     print("base 2")
-    #     # for i in len(digits)-1:
-    #     #     print(i)
-    #     #     num = int(reverse_digits[i])
-    #     #     convert = num * (base ** i)
-    #     #     base_ten_conversion += convert
-    #
-    # # TODO: Decode digits from hexadecimal (base 16)
-    # elif base == 16:
-    #     print("Base 16")
-    #
-    # # TODO: Decode digits from any base (2 up to 36)
-    # else:
-    #     print("Other base")
-
+        base_ten_conversion += char_dict[num] * (base**i)
+        # base_ten_conversion += char_dict[num] * base_mult
+        # base_mult *= base_mult
+    # print(base_ten_conversion)
     return base_ten_conversion
 
 
@@ -59,17 +41,20 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
-    converting = True
+    # converting = True
 
-    if base == 2:
-        base_two_number = ''
-        while(converting):
-            base_two_number += str(number % 2)
-            number = number / 2
-            if number <= 1:
-                converting = False
+    num_dict = {0:'0',1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'a',11:'b','c':12,'d':13,'e':14,'f':15,'g':16,'h':17,'i':18,'j':19,'k':20,'l':21,'m':22,'n':23,'o':24,'p':25,'q':26,'r':27,'s':28,'t':29,'u':30,'v':31,'w':32,'x':33,'y':34,'z':35}
 
-        return base_two_number
+    # if base == 2:
+    #     base_two_number = ''
+    #     while(converting):
+    #         base_two_number += str(number % 2)
+    #         number = number / 2
+    #         if number <= 1:
+    #             converting = False
+    #
+    #     return base_two_number
+
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)
@@ -101,6 +86,11 @@ def convert(digits, base1, base2):
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
+    # decode("1010",2)
+    # decode("1100",2)
+    # decode("1010",4)
+    # decode("1010",8)
+    # decode("6A", 16)
     import sys
     args = sys.argv[1:]  # Ignore script file name
     if len(args) == 3:

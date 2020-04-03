@@ -25,6 +25,7 @@ def decode(digits, base):
 
     for i, num in enumerate(digits):
         base_ten_conversion += char_dict[num] * (base**i)
+        ''' Was trying anther faster methode to do exponential mult '''
         # base_ten_conversion += char_dict[num] * base_mult
         # base_mult *= base_mult
     # print(base_ten_conversion)
@@ -43,22 +44,25 @@ def encode(number, base):
     # TODO: Encode number in binary (base 2)
     # converting = True
 
-    num_dict = {0:'0',1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'a',11:'b','c':12,'d':13,'e':14,'f':15,'g':16,'h':17,'i':18,'j':19,'k':20,'l':21,'m':22,'n':23,'o':24,'p':25,'q':26,'r':27,'s':28,'t':29,'u':30,'v':31,'w':32,'x':33,'y':34,'z':35}
+    num_dict = {0:'0',1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'a',11:'b',12:'c',13:'d',14:'e',15:'f',16:'g',17:'h',18:'i',19:'j',20:'k',21:'l',22:'m',23:'n',24:'o',25:'p',26:'q',27:'r',28:'s',29:'t',30:'u',31:'v',32:'w',33:'x',34:'y',35:'z'}
+    encoded_to_base = ''
+    encoding = True
 
-    # if base == 2:
-    #     base_two_number = ''
-    #     while(converting):
-    #         base_two_number += str(number % 2)
-    #         number = number / 2
-    #         if number <= 1:
-    #             converting = False
-    #
-    #     return base_two_number
+    while(encoding):
+        num_and_remainder = divmod(number, base)
+        number = num_and_remainder[0]
+        remainder =  num_dict[num_and_remainder[1]]
+        encoded_to_base += remainder
+        if number < base :
+            ''' End the encoding plus add the remaining number unless its zero'''
+            if number == 0:
+                encoding = False
+            else:
+                encoded_to_base += num_dict[number]
+                encoding = False
 
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    encoded_to_base = encoded_to_base[::-1]
+    return encoded_to_base
 
 
 def convert(digits, base1, base2):

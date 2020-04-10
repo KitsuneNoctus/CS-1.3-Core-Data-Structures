@@ -19,7 +19,20 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    pass
+    print(text)
+    text = text.lower()
+    text = text.split()
+    print(text)
+    length = len(text)
+    split = divmod(length,2)
+    # if spilt[1] == 0:
+        # for i in range()
+    # print(len(text))
+    # if length % 2 != 0:
+    #     pass
+    # else:
+    #     pass
+    # pass
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -46,4 +59,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    is_palindrome("tacocat")
+    is_palindrome("taco cat")
+    is_palindrome("Taco cat")
+    is_palindrome("taco' cat")

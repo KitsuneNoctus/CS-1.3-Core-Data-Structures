@@ -7,14 +7,6 @@ from string import punctuation
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
-def clean_text(text):
-    text = text.lower()
-    new_text = ''
-    for word in text.split():
-        clean_word = word.strip(punctuation)
-        new_text += clean_word
-    return new_text
-
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
     backwards, ignoring punctuation, whitespace, and letter casing."""
@@ -27,13 +19,18 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    text = clean_text(text)
-    half_text = divmod(len(text),2)
+    text = text.lower()
+    new_text = ''
+    for char in text:
+        if char in string.ascii_lowercase:
+            new_text += char
+    print(new_text)
 
-    text_1 = text[:half_text[1]]
-    print(text_1)
-    text_2 = text[half_text[1]:]
-    print(text_2)
+    reverse = new_text[::-1]
+    if new_text == reverse:
+        return True
+    return False
+
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
 

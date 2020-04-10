@@ -1,11 +1,19 @@
 #!python
 
 import string
+from string import punctuation
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
+def clean_text(text):
+    text = text.lower()
+    new_text = ''
+    for word in text.split():
+        clean_word = word.strip(punctuation)
+        new_text += clean_word
+    return new_text
 
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
@@ -19,20 +27,13 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    print(text)
-    text = text.lower()
-    text = text.split()
-    print(text)
-    length = len(text)
-    split = divmod(length,2)
-    # if spilt[1] == 0:
-        # for i in range()
-    # print(len(text))
-    # if length % 2 != 0:
-    #     pass
-    # else:
-    #     pass
-    # pass
+    text = clean_text(text)
+    half_text = divmod(len(text),2)
+
+    text_1 = text[:half_text[1]]
+    print(text_1)
+    text_2 = text[half_text[1]:]
+    print(text_2)
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -61,6 +62,7 @@ def main():
 if __name__ == '__main__':
     # main()
     is_palindrome("tacocat")
-    is_palindrome("taco cat")
-    is_palindrome("Taco cat")
-    is_palindrome("taco' cat")
+    is_palindrome("deed")
+    # is_palindrome("taco cat")
+    # is_palindrome("Taco cat")
+    # is_palindrome("taco' cat")

@@ -13,8 +13,18 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+    # return is_palindrome_iterative(text)
+
+    text = text.lower()
+    new_text = ''
+    for char in text:
+        if char in string.ascii_lowercase:
+            new_text += char
+
+    if text == '':
+        return True
+
+    return is_palindrome_recursive(new_text, 0, len(new_text)-1)
 
 
 def is_palindrome_iterative(text):
@@ -37,38 +47,48 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    if text == '':
+
+    if left == right:
         return True
-    text = text.lower()
-    reverse = text[::-1]
+    if text[left] != text[right]:
+        return False
+    if left < right:
+        return is_palindrome_recursive(text, left + 1, right - 1)
+    return True
 
-    l_char = ''
-    r_char = ''
-
-    ''' Third attempt '''
-    if left == None and right == None:
-        left = 0
-        right = 0
-        l_char = text[left]
-        r_char = reverse[right]
-    else:
-        if left <= len(text)-1 and right <= len(reverse)-1:
-            l_char = text[left]
-            r_char = reverse[right]
-        elif left == right:
-            return True
-
-    if l_char not in string.ascii_lowercase:
-        print("Left not in")
-        is_palindrome_recursive(text, left + 1, right)
-
-    if r_char not in string.ascii_lowercase:
-        print("Right not in")
-        is_palindrome_recursive(text, left, right + 1)
-
-    if l_char == r_char:
-        return is_palindrome_recursive(text, left + 1, right + 1)
-    return False
+    # if text == '':
+    #     return True
+    #
+    # text = text.lower()
+    # reverse = text[::-1]
+    #
+    # l_char = ''
+    # r_char = ''
+    #
+    # ''' Third attempt '''
+    # if left == None and right == None:
+    #     left = 0
+    #     right = 0
+    #     l_char = text[left]
+    #     r_char = reverse[right]
+    # else:
+    #     if left <= len(text)-1 and right <= len(reverse)-1:
+    #         l_char = text[left]
+    #         r_char = reverse[right]
+    #     elif left == right:
+    #         return True
+    #
+    # if l_char not in string.ascii_lowercase:
+    #     print("Left not in")
+    #     is_palindrome_recursive(text, left + 1, right)
+    #
+    # if r_char not in string.ascii_lowercase:
+    #     print("Right not in")
+    #     is_palindrome_recursive(text, left, right + 1)
+    #
+    # if l_char == r_char:
+    #     return is_palindrome_recursive(text, left + 1, right + 1)
+    # return False
 
     ''' Second Attempt Thoughts '''
     # if left == None and right == None:

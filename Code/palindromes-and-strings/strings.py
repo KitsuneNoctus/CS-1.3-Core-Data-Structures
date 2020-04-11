@@ -33,7 +33,12 @@ def find_index(text, pattern):
     # TODO: Implement find_index here (iteratively and/or recursively)
     if contains(text,pattern) == True:
         for i in range(0, len(text)-1):
-            
+            print(text[i])
+            if text[i] == pattern[0]:
+                print("Tru")
+                print(text[i:len(pattern)-1])
+                if text[i:len(pattern)] == pattern:
+                    return i
     return None
 
 
@@ -75,4 +80,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(find_index("happy","ha"))
+    print("--------")
+    print(find_index("pphay","ha"))

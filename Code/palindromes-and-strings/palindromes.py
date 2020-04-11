@@ -37,7 +37,63 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    pass
+    if text == '':
+        return True
+    text = text.lower()
+    reverse = text[::-1]
+
+    l_char = ''
+    r_char = ''
+
+    ''' Third attempt '''
+    if left == None and right == None:
+        left = 0
+        right = 0
+        l_char = text[left]
+        r_char = reverse[right]
+    else:
+        if left <= len(text)-1 and right <= len(reverse)-1:
+            l_char = text[left]
+            r_char = reverse[right]
+        elif left == right:
+            return True
+
+    if l_char not in string.ascii_lowercase:
+        print("Left not in")
+        is_palindrome_recursive(text, left + 1, right)
+
+    if r_char not in string.ascii_lowercase:
+        print("Right not in")
+        is_palindrome_recursive(text, left, right + 1)
+
+    if l_char == r_char:
+        return is_palindrome_recursive(text, left + 1, right + 1)
+    return False
+
+    ''' Second Attempt Thoughts '''
+    # if left == None and right == None:
+    #     print("Starting...")
+    #     left = text[0]
+    #     print(f"Left: {left}")
+    #     right = text[len(text)-1]
+    #     print(f"Right: {right}")
+    #
+    # if left not in string.ascii_lowercase:
+    #     print("Left not in")
+    #     is_palindrome_recursive(text, left + 1, right)
+    #
+    # if right not in string.ascii_lowercase:
+    #     print("Right not in")
+    #     is_palindrome_recursive(text, left, right - 1)
+    #
+    # if left == right:
+    #     return
+
+    ''' First attempt thoughts'''
+    # if text.index(right) == text.index(left):
+    #     return True
+
+    # if
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
@@ -57,9 +113,14 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    is_palindrome("tacocat")
-    is_palindrome("deed")
+    main()
+    # is_palindrome("tacocat")
+    # is_palindrome("deed")
+
     # is_palindrome("taco cat")
     # is_palindrome("Taco cat")
     # is_palindrome("taco' cat")
+
+
+    # print(is_palindrome_recursive("IllicitT"))
+    # print(is_palindrome_recursive("tacocat"))

@@ -55,6 +55,7 @@ def binary_search(array, item):
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
     # Got some help, thought I understood, but didn't
+    # O(log n)
     low = 0
     high = len(array)-1
 
@@ -129,11 +130,11 @@ def binary_search_recursive(array, item, low=None, high=None):
         low = 0
         high = len(array)-1
 
-    mid = (high + low) // 2
-
     if low > high:
         ''' If item isn't in the list'''
         return None
+
+    mid = (high + low) // 2
 
     if item > array[mid]:
         ''' If item higher than mid'''
@@ -144,7 +145,7 @@ def binary_search_recursive(array, item, low=None, high=None):
     else:
         return mid
 
-    return binary_search_recursive(array, item, low, high)
+    # return binary_search_recursive(array, item, low, high)
 
 
     # once implemented, change binary_search to call binary_search_recursive

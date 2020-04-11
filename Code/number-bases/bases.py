@@ -31,6 +31,15 @@ def decode(digits, base):
     # print(base_ten_conversion)
     return base_ten_conversion
 
+    '''
+    decimalnum = 0
+    digits = digits[::-1]
+    for i in ranf(len(digits)):
+        digit = int(digits[i], base=base)
+        decimalnum = ------
+    return decimalnum
+    '''
+
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.

@@ -52,15 +52,27 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
-    # if pattern == '':
-    #     return 0
+    compare_limit = len(text) - len(pattern)
+    # pattern_length = len(pattern) - 1
 
-    l = find_all_indexes(text, pattern, 1)
-    print("----")
-    if len(l) > 0:
-        return l[0]
-    else:
-        return None
+    if pattern == '':
+        return 0
+
+    for i in range(0,compare_limit+1):
+        for j in range(0, len(pattern)):
+            if text[i+j] != pattern[j]:
+                break
+        else:
+            return i
+
+
+
+    # l = find_all_indexes(text, pattern, 1)
+    # print("----")
+    # if len(l) > 0:
+    #     return l[0]
+    # else:
+    #     return None
 
     # compare_limit = len(text) - len(pattern)
     # pattern_length = len(pattern) - 1

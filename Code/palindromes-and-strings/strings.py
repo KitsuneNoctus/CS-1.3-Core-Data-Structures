@@ -124,44 +124,62 @@ def find_all_indexes(text, pattern, flag=0):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
-    if len(pattern) <= 0:
-        compare_limit = len(text) - 1
-        pattern_length = len(pattern)
-    else:
-        compare_limit = len(text) - len(pattern)
-        pattern_length = len(pattern) - 1
-
     list = []
-    print(f"Comparing - {pattern} in {text}")
-    print(f"Compare limit: {compare_limit}")
+    compare_limit = len(text) - len(pattern)
+    pattern_length = len(pattern) - 1
 
-    for i in range(0, compare_limit+1):
-        print(i)
-        #Check through the entire text to maximum before error
-        print(f"Pattern Length: {pattern_length}")
-        if pattern_length == 0:
-            if pattern == '':
-                list.append(i)
-            elif text[i] != pattern[0]:
-                print("Nope")
-            else:
-                list.append(i)
-
-            if flag == 1:
-                list.append(i)
-                return list
-        else:
-            for j in range(0, pattern_length):
-                print(f"Text: {text[i+j]} - Pattern {pattern[j]}")
+    if pattern == '':
+        for i in range(0,len(text)):
+            list.append(i)
+    else:
+        for i in range(0,compare_limit+1):
+            for j in range(0, len(pattern)):
                 if text[i+j] != pattern[j]:
-                    print("Break")
                     break
             else:
-                if flag == 1:
-                    list.append(i)
-                    return list
                 list.append(i)
+
     return list
+
+
+    # if len(pattern) <= 0:
+    #     compare_limit = len(text) - 1
+    #     pattern_length = len(pattern)
+    # else:
+    #     compare_limit = len(text) - len(pattern)
+    #     pattern_length = len(pattern) - 1
+    #
+    # list = []
+    # print(f"Comparing - {pattern} in {text}")
+    # print(f"Compare limit: {compare_limit}")
+    #
+    # for i in range(0, compare_limit+1):
+    #     print(i)
+    #     #Check through the entire text to maximum before error
+    #     print(f"Pattern Length: {pattern_length}")
+    #     if pattern_length == 0:
+    #         if pattern == '':
+    #             list.append(i)
+    #         elif text[i] != pattern[0]:
+    #             print("Nope")
+    #         else:
+    #             list.append(i)
+    #
+    #         if flag == 1:
+    #             list.append(i)
+    #             return list
+    #     else:
+    #         for j in range(0, pattern_length):
+    #             print(f"Text: {text[i+j]} - Pattern {pattern[j]}")
+    #             if text[i+j] != pattern[j]:
+    #                 print("Break")
+    #                 break
+    #         else:
+    #             if flag == 1:
+    #                 list.append(i)
+    #                 return list
+    #             list.append(i)
+    # return list
 
     # list = []
     # for i in range(0, compare_limit):

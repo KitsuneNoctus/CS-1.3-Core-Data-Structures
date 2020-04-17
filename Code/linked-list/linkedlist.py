@@ -95,28 +95,46 @@ class LinkedList(object):
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) should the index be at the start or end of the list
+        Worst case running time: O(n) travel all the way through to end of list"""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node before the given index and insert item after it
-        new_node = Node(item)
-        previous = None
-        self.size += 1
+
+        # new_node = Node(item)
         # previous = None
-        if self.is_empty():
-            self.head = new_node
+        # self.size += 1
+
+        if index == 0:
+            self.prepend(item)
+        elif index == self.size:
+            self.append(item)
         else:
+            new_node = Node(item)
             current = self.head
-            count = 0
-            while current is not None:
-                if count == index:
-                    previous.next = new_node
-                    previous.next.next = current
-                count += 1
+            previous = None
+            # Stolen from https://github.com/BriantOliveira/CS-3-Core-Data-Structures/blob/master/source/linkedlist.py
+            # Previos student
+            for _ in range(index):
                 previous = current
                 current = current.next
+            previous.next = new_node
+            new_node.next = current
+            self.size += 1
+        # previous = None
+        # if self.is_empty():
+        #     self.head = new_node
+        # else:
+        #     current = self.head
+        #     count = 0
+        #     while current is not None:
+        #         if count == index:
+        #             previous.next = new_node
+        #             previous.next.next = current
+        #         count += 1
+        #         previous = current
+        #         current = current.next
 
         # if self.head == None:
         #     self.head = new_node

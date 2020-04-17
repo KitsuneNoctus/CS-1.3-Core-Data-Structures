@@ -36,10 +36,24 @@ def is_palindrome_iterative(text):
             new_text += char
     print(new_text)
 
+    #This is where the actual code starts
     reverse = new_text[::-1]
     if new_text == reverse:
         return True
     return False
+
+    #How jess did it *==*==*==*
+    #This is more efficient as it only looks at half
+    # left_index = 0
+    # right_index = len(text)-1
+    #
+    # while left_index <= right_index:
+    #     if text[left_index] != text[right_index]:
+    #         return False
+    #     left_index += 1
+    #     right_index -= 1
+    #
+    # return True
 
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests

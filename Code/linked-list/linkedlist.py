@@ -24,6 +24,8 @@ class LinkedList(object):
             for item in iterable:
                 self.append(item)
 
+        # self.length()
+
     def __str__(self):
         """Return a formatted string representation of this linked list."""
         items = ['({!r})'.format(item) for item in self.items()]
@@ -73,12 +75,22 @@ class LinkedList(object):
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(n) should the index be zero or the list length is 1.
+        Worst case running time: O(n) should the index be at the end of the linked list or
+        exists beyond the range of the list"""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node at the given index and return its data
+        current = self.head
+        count = 0
+        while current:
+            if count == index:
+                return current.data
+            count += 1
+            current = current.next
+
+        # return node.data
 
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
@@ -89,12 +101,47 @@ class LinkedList(object):
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node before the given index and insert item after it
+        new_node = Node(item)
+        previous = None
+        self.size += 1
+        # previous = None
+        if self.is_empty():
+            self.head = new_node
+        else:
+            current = self.head
+            count = 0
+            while current is not None:
+                if count == index:
+                    previous.next = new_node
+                    previous.next.next = current
+                count += 1
+                previous = current
+                current = current.next
+
+        # if self.head == None:
+        #     self.head = new_node
+        #     return
+
+        # current = self.head
+        # count = 0
+        #
+        # while current:
+        #     if count == index - 1 and current.next != None:
+        #         original_next = current.next
+        #         new_node.next = original_next
+        #         current.next = new_node
+        #         # current.next.next =
+        #     count += 1
+        #     current = current.next
+
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) under all conditions and that there is space in the allocated memory.
+        Linked list allows you to go right to the tail node, meaning you need not traverse the entire list """
         # Create a new node to hold the given item
         new_node = Node(item)
+        self.size += 1
         # Check if this linked list is empty
         if self.is_empty():
             # Assign head to new node
@@ -110,6 +157,7 @@ class LinkedList(object):
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Create a new node to hold the given item
         new_node = Node(item)
+        self.size += 1
         # Check if this linked list is empty
         if self.is_empty():
             # Assign tail to new node
@@ -145,6 +193,19 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
+
+        current_node = self.head
+
+        while current_node is not None:
+            if current_node.data == old_item:
+                current_node.data = new_item
+                return
+            current_node = current_node.next
+
+        raise ValueError("The item to be replaced does not exist.")
+
+        # if not (0 <= index <= self.size):
+        #     raise ValueError('List index out of range: {}'.format(index))
         pass
 
     def delete(self, item):
@@ -169,6 +230,7 @@ class LinkedList(object):
                 node = node.next
         # Check if we found the given item or we never did and reached the tail
         if found:
+            self.size -= 1
             # Check if we found a node in the middle of this linked list
             if node is not self.head and node is not self.tail:
                 # Update the previous node to skip around the found node

@@ -58,7 +58,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(n) as it will have to traverse the entire linked list."""
         # Node counter initialized to zero
         node_count = 0
         # Start at the head node
@@ -154,7 +154,7 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) as you only need to insert at the start and assign the next to the original head"""
         # Create a new node to hold the given item
         new_node = Node(item)
         self.size += 1
@@ -189,8 +189,8 @@ class LinkedList(object):
     def replace(self, old_item, new_item):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) should the old item be at the head of the list
+        Worst case running time: O(n) should you need to go through the whole list"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
 
@@ -205,13 +205,12 @@ class LinkedList(object):
         raise ValueError("The item to be replaced does not exist.")
 
         # if not (0 <= index <= self.size):
-        #     raise ValueError('List index out of range: {}'.format(index))
-        pass
+        #     raise ValueError('List index out of range: {}'.format(index)
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) should the item be at the start of the list
+        Worst case running time: O(n) should you need to traverse the whole list"""
         # Start at the head node
         node = self.head
         # Keep track of the node before the one containing the given item
